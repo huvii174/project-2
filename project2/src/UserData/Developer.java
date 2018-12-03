@@ -5,15 +5,26 @@
  */
 package UserData;
 
+import java.io.File;
+
 /**
  *
  * @author nghun
  */
-public class Developer extends Employee {
-    
-    public Developer(int employeeID, String Username, String Password, String Realname , boolean CEOrole) {
-        super(employeeID, Username, Password, Realname,false);
+public class Developer extends User {
+
+    public Developer() {
     }
-    
-    
+
+    public Developer(String id, String userName, String password, String fullName) 
+    {
+        
+        super(id, userName, password, fullName);
+        this.type = TYPE.DEVELOPER;
+    }
+
+   
+
+      
+
 }

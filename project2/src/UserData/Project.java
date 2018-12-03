@@ -5,8 +5,11 @@
  */
 package UserData;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import UserData.Task;
 
 /**
  *
@@ -14,70 +17,55 @@ import java.util.List;
  */
 public class Project {
     public String name;
-    public int manageID;
-    public List<Employee> list ;
-    public int prjID;
-    public List<Task> task1;
-    public int numberEmpl;
-    
-    public Project(String name, int manageID, int prjID) {
+    public String prjID;
+    public String mnID;
+    public ArrayList<Task> task;
+    public ArrayList<User> user;
+
+    public Project(String name, String prjID, String mnID, ArrayList<Task> task, ArrayList<User> user) {
         this.name = name;
-        this.manageID = manageID;
         this.prjID = prjID;
+        this.mnID = mnID;
+        this.task = task;
+        this.user = user;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Project(String name, String prjID, String mnID) {
         this.name = name;
-    }
-
-    public int getManageID() {
-        return manageID;
-    }
-
-    public void setManageID(int manageID) {
-        this.manageID = manageID;
-    }
-
-    public List<Employee> getList() {
-        return list;
-    }
-
-    public void setList(List<Employee> list) {
-        this.list = list;
-    }
-
-    public int getPrjID() {
-        return prjID;
-    }
-
-    public void setPrjID(int prjID) {
         this.prjID = prjID;
+        this.mnID = mnID;
     }
 
-    public List<Task> getTask1() {
-        return task1;
+        
+    public void saveinFile(BufferedWriter buffer)   throws IOException {
+        buffer.write(this.prjID);
+        buffer.newLine();
+        buffer.write(this.name);
+        buffer.newLine();
+        buffer.write(this.mnID);
+        buffer.newLine();
+        buffer.write("Task: ");
+        buffer.newLine();
+        for(int i = 0 ; i< this.task.size();i++)
+        {
+            this.task.get(i).saveInFile(buffer);
+            buffer.newLine();
+        }
+        buffer.newLine();
+        buffer.write("Employees ");
+        buffer.newLine();
+        for(int i = 0 ; i< this.user.size();i++)
+        {
+            this.user.get(i).saveInFile(buffer);
+        }
+        buffer.newLine();
     }
 
-    public void setTask1(List<Task> task1) {
-        this.task1 = task1;
-    }
-
-    public int getNumberEmpl() {
-        return numberEmpl;
-    }
-
-    public void setNumberEmpl(int numberEmpl) {
-        this.numberEmpl = numberEmpl;
+    @Override
+    public String toString() {
+        return "Project{" + "name=" + name + ", prjID=" + prjID + ", mnID=" + mnID + '}';
     }
     
-    public void AddiEmpl(Employee emp1)
-    {
-        numberEmpl++;
-        list.add(emp1);
-    }
     
 }
+

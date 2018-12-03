@@ -5,30 +5,48 @@
  */
 package UserData;
 
+import UserData.Task;
+
+import UserData.Task;
+import UserData.Task.STATUS;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 /**
  *
  * @author nghun
+ * 
  */
 public class Manager extends User {
+
+
+    public Manager() {
+        super();
+        this.type = TYPE.MANAGER;
+    }
+
+    public Manager(String userName, String password, String fullName) {
+        super(userName, password, fullName);
+        this.type = TYPE.MANAGER;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Manager(String id,String userName, String password, String fullName) {
+        super(id,userName, password, fullName);
+        this.type = TYPE.CEO;
+    }
+
+    public void createTask() {
+
+    }
+
     
-    public int managerID;
 
-    public Manager(int managerID, String Username, String Password, String Realname,boolean CEOrole) {
-        super(Username, Password, Realname,false);
-        this.managerID = managerID;
-    }
-
-    public int getManagerID() {
-        return managerID;
-    }
-
-    public void setManagerID(int managerID) {
-        this.managerID = managerID;
-    }
-    private Project addEmp(Project pj,Employee emp)
-    {
-        pj.AddiEmpl(emp);
-        return pj;
-    }
-     
 }
